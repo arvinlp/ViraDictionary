@@ -11,28 +11,33 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:title="دیکشنری"
+        android:title="جزئیات کلمه"
         android:titleTextColor="@android:color/white" />
 
-    <!-- سایر عناصر -->
+    <!-- سایر بخش‌های صفحه -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <EditText
-            android:id="@+id/searchField"
+        <TextView
+            android:id="@+id/faTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="جستجو"
+            android:textSize="20sp"
             android:padding="8dp"
-            android:background="@android:drawable/edit_text"
-            android:layout_marginBottom="8dp" />
+            android:text="کلمه فارسی"
+            android:gravity="center" />
 
-        <ListView
-            android:id="@+id/listView"
+        <TextView
+            android:id="@+id/enTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:text="English Word"
+            android:gravity="center" />
     </LinearLayout>
+
 </LinearLayout>
