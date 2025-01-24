@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Vira Dictionary</string>
+    <string name="fa_word">کلمه فارسی</string>
+    <string name="en_word">English Word</string>
+    <string name="word">Word</string>
+    <string name="search">Search</string>
+    <string name="about">About</string>
+    <string name="about_us">درباره ما</string>
+    <string name="about_desc">
+        این نرم‌افزار یک دیکشنری ساده است که با استفاده از پایگاه داده SQLite طراحی شده است.
+        \n\n
+        نسخه: 1.0.0\n
+        توسعه‌دهنده: اکوسیستم ویرا
+    </string>
+    <string name="close">Close</string>
 </resources>

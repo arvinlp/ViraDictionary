@@ -1,23 +1,22 @@
 package com.alp.ir.viradictionary;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
-        EditText searchField = findViewById(R.id.searchField);
+
         ListView listView = findViewById(R.id.listView);
 
         words = new ArrayList<>();
@@ -49,22 +47,6 @@ public class MainActivity extends AppCompatActivity {
         // بارگذاری همه کلمات در ابتدا
         loadWords(db, "");
 
-        // جستجو هنگام تغییر متن
-        searchField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // جستجو با متن وارد شده
-                loadWords(db, s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
 
         // تنظیم کلیک روی آیتم‌های لیست
         listView.setOnItemClickListener((AdapterView<?> parent, android.view.View view, int position, long id) -> {
@@ -112,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         // پیدا کردن آیتم جستجو
         MenuItem searchItem = menu.findItem(R.id.action_search);
+        MenuItem aboutItem = menu.findItem(R.id.action_about);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
         // مدیریت رویداد جستجو
@@ -134,4 +117,43 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_about) {
+            // نمایش دیالوگ "درباره ما"
+            showAboutDialog();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.about_us);
+        builder.setMessage(R.string.about_desc);
+        builder.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/iranyekan.ttf");
+
+        TextView title = dialog.findViewById(android.R.id.title);
+        if (title != null) {
+            title.setTypeface(typeface);
+        }
+
+        TextView message = dialog.findViewById(android.R.id.message);
+        if (message != null) {
+            message.setTypeface(typeface);
+        }
+    }
 }

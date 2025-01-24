@@ -2,6 +2,7 @@ package com.alp.ir.viradictionary;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
@@ -51,6 +52,12 @@ public class WordDetailsActivity extends AppCompatActivity {
         // نمایش اطلاعات در TextView ها
         TextView faTextView = findViewById(R.id.faTextView);
         TextView enTextView = findViewById(R.id.enTextView);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/iranyekan.ttf");
+        faTextView.setTypeface(typeface);
+        enTextView.setTypeface(typeface);
+
+
 
         if (faWord != null) {
             faTextView.setText(faWord.toString());

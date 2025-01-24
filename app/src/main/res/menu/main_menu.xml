@@ -2,12 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- آیتم جستجو -->
     <item
         android:id="@+id/action_search"
-        android:title="جستجو"
+        android:title="@string/search"
         android:icon="@android:drawable/ic_menu_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/about"
+        android:icon="@android:drawable/ic_menu_info_details"
         app:showAsAction="always" />
 
 </menu>
